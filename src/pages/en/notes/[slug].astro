@@ -4,7 +4,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { formatDate } from "../../../lib/i18n";
 
 export async function getStaticPaths() {
-  const notes = await getCollection("en-notes", ({ data }) => !data.draft);
+  const notes = await getCollection("zh-notes", ({ data }) => !data.draft);
   return notes.map((note) => ({
     params: { slug: note.id },
     props: { note }

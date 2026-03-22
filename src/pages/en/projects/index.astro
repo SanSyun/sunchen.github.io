@@ -4,18 +4,18 @@ import EntryCard from "../../../components/EntryCard.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { formatDate } from "../../../lib/i18n";
 
-const projects = (await getCollection("en-projects", ({ data }) => !data.draft)).sort(
+const projects = (await getCollection("zh-projects", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 ---
 
-<BaseLayout title="Projects | Your Name" description="Project case studies and execution records." locale="en" switchHref="/projects">
+<BaseLayout title="Projects | SUNCHEN" description="Project case studies and execution records." locale="en" switchHref="/projects">
   <section class="page-header">
     <span class="eyebrow">Projects</span>
-    <h1 class="page-title">Case studies, shipped work, and technical decisions.</h1>
+    <h1 class="page-title">Project records with an English interface and original Chinese content.</h1>
     <p class="lede">
-      Write each project like a compact research record: background, responsibility, architecture,
-      tradeoffs, and outcome. That format makes your resume links far stronger.
+      The page structure and navigation are translated, while project titles, summaries, and full
+      articles remain in their original Chinese wording.
     </p>
   </section>
 
@@ -36,4 +36,3 @@ const projects = (await getCollection("en-projects", ({ data }) => !data.draft))
     ))}
   </section>
 </BaseLayout>
-
