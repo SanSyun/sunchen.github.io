@@ -15,11 +15,11 @@ const { project } = Astro.props;
 const { Content, headings } = await render(project);
 ---
 
-<BaseLayout title={`${project.data.title} | Projects`} description={project.data.description} locale="zh" switchHref={`/en/projects/${project.id}`}>
+<BaseLayout title={`${project.data.title} | Projects`} description={project.data.description}>
   <section class="article-layout">
     {headings.length > 0 && (
       <aside class="article-toc">
-        <h2 class="article-toc-title">大纲</h2>
+        <h2 class="article-toc-title">On this page</h2>
         <ul class="toc-list">
           {headings
             .filter((heading) => heading.depth === 2 || heading.depth === 3)
@@ -48,7 +48,7 @@ const { Content, headings } = await render(project);
           </div>
           <div>
             <span class="small-label">Published</span>
-            <p>{formatDate(project.data.date, "zh")}</p>
+            <p>{formatDate(project.data.date)}</p>
           </div>
           <div>
             <span class="small-label">Outcome</span>

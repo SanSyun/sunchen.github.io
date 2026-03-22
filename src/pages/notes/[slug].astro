@@ -15,11 +15,11 @@ const { note } = Astro.props;
 const { Content, headings } = await render(note);
 ---
 
-<BaseLayout title={`${note.data.title} | Notes`} description={note.data.description} locale="zh" switchHref={`/en/notes/${note.id}`}>
+<BaseLayout title={`${note.data.title} | Notes`} description={note.data.description}>
   <section class="article-layout">
     {headings.length > 0 && (
       <aside class="article-toc">
-        <h2 class="article-toc-title">大纲</h2>
+        <h2 class="article-toc-title">On this page</h2>
         <ul class="toc-list">
           {headings
             .filter((heading) => heading.depth === 2 || heading.depth === 3)
@@ -38,8 +38,8 @@ const { Content, headings } = await render(note);
         <h1 class="article-title">{note.data.title}</h1>
         <p class="article-summary">{note.data.description}</p>
         <div class="meta-line">
-          <span>{formatDate(note.data.date, "zh")}</span>
-          {note.data.updatedDate && <span>更新于 {formatDate(note.data.updatedDate, "zh")}</span>}
+          <span>{formatDate(note.data.date)}</span>
+          {note.data.updatedDate && <span>Updated {formatDate(note.data.updatedDate)}</span>}
           {note.data.readingTime && <span>{note.data.readingTime}</span>}
         </div>
         {note.data.tags.length > 0 && (

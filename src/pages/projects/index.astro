@@ -9,12 +9,12 @@ const projects = (await getCollection("zh-projects", ({ data }) => !data.draft))
 );
 ---
 
-<BaseLayout title="Projects | Your Name" description="项目案例、执行记录与技术权衡。" locale="zh" switchHref="/en/projects">
+<BaseLayout title="Projects | SUNCHEN" description="Project case studies and execution records.">
   <section class="page-header">
     <span class="eyebrow">Projects</span>
-    <h1 class="page-title">案例研究、已完成的工作，以及关键技术决策。</h1>
+    <h1 class="page-title">Project records with a consistent English interface.</h1>
     <p class="lede">
-      把每个项目写成一份精炼档案：背景、职责、技术方案、权衡与结果。这种结构对简历跳转页非常有帮助。
+      This page keeps the interface, labels, and structure in English while preserving your original project content.
     </p>
   </section>
 
@@ -25,7 +25,7 @@ const projects = (await getCollection("zh-projects", ({ data }) => !data.draft))
         title={project.data.title}
         description={project.data.description}
         meta={[
-          formatDate(project.data.date, "zh"),
+          formatDate(project.data.date),
           project.data.role,
           project.data.duration,
           project.data.outcome
@@ -35,4 +35,3 @@ const projects = (await getCollection("zh-projects", ({ data }) => !data.draft))
     ))}
   </section>
 </BaseLayout>
-
