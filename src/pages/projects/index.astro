@@ -1,0 +1,38 @@
+﻿---
+import { getCollection } from "astro:content";
+import EntryCard from "../../components/EntryCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatDate } from "../../lib/i18n";
+
+const projects = (await getCollection("zh-projects", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="Projects | Your Name" description="项目案例、执行记录与技术权衡。" locale="zh" switchHref="/en/projects">
+  <section class="page-header">
+    <span class="eyebrow">Projects</span>
+    <h1 class="page-title">案例研究、已完成的工作，以及关键技术决策。</h1>
+    <p class="lede">
+      把每个项目写成一份精炼档案：背景、职责、技术方案、权衡与结果。这种结构对简历跳转页非常有帮助。
+    </p>
+  </section>
+
+  <section class="list-block">
+    {projects.map((project) => (
+      <EntryCard
+        href={`/projects/${project.id}`}
+        title={project.data.title}
+        description={project.data.description}
+        meta={[
+          formatDate(project.data.date, "zh"),
+          project.data.role,
+          project.data.duration,
+          project.data.outcome
+        ]}
+        tags={project.data.stack}
+      />
+    ))}
+  </section>
+</BaseLayout>
+

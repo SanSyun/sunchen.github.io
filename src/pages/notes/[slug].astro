@@ -1,0 +1,58 @@
+﻿---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatDate } from "../../lib/i18n";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("zh-notes", ({ data }) => !data.draft);
+  return notes.map((note) => ({
+    params: { slug: note.id },
+    props: { note }
+  }));
+}
+
+const { note } = Astro.props;
+const { Content, headings } = await render(note);
+---
+
+<BaseLayout title={`${note.data.title} | Notes`} description={note.data.description} locale="zh" switchHref={`/en/notes/${note.id}`}>
+  <section class="article-layout">
+    {headings.length > 0 && (
+      <aside class="article-toc">
+        <h2 class="article-toc-title">大纲</h2>
+        <ul class="toc-list">
+          {headings
+            .filter((heading) => heading.depth === 2 || heading.depth === 3)
+            .map((heading) => (
+              <li class={`toc-item-depth-${heading.depth}`}>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+        </ul>
+      </aside>
+    )}
+
+    <section class="article-shell">
+      <div class="article-topline">
+        <span class="eyebrow">{note.data.category}</span>
+        <h1 class="article-title">{note.data.title}</h1>
+        <p class="article-summary">{note.data.description}</p>
+        <div class="meta-line">
+          <span>{formatDate(note.data.date, "zh")}</span>
+          {note.data.updatedDate && <span>更新于 {formatDate(note.data.updatedDate, "zh")}</span>}
+          {note.data.readingTime && <span>{note.data.readingTime}</span>}
+        </div>
+        {note.data.tags.length > 0 && (
+          <ul class="tag-list" style="margin-top: 18px;">
+            {note.data.tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <article>
+        <Content />
+      </article>
+    </section>
+  </section>
+</BaseLayout>

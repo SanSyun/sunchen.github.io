@@ -1,0 +1,28 @@
+---
+export interface Props {
+  href: string;
+  title: string;
+  description: string;
+  meta: string[];
+  tags?: string[];
+}
+
+const { href, title, description, meta, tags = [] } = Astro.props;
+---
+
+<article class="timeline-item">
+  <div class="meta-line">
+    {meta.map((item) => (
+      <span>{item}</span>
+    ))}
+  </div>
+  <h3><a class="text-link" href={href}>{title}</a></h3>
+  <p>{description}</p>
+  {tags.length > 0 && (
+    <ul class="tag-list" style="margin-top: 16px;">
+      {tags.map((tag) => (
+        <li>{tag}</li>
+      ))}
+    </ul>
+  )}
+</article>

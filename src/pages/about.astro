@@ -1,0 +1,52 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About | SUNCHEN" description="SUNCHEN 的个人背景、技术方向与联系方式。" locale="zh" switchHref="/en/about">
+  <section class="page-header">
+    <span class="eyebrow">About</span>
+    <h1 class="page-title">SUNCHEN</h1>
+    <p class="lede">
+      Keep Hungry。当前重点关注嵌入式 Linux 驱动、RTOS 与 MCU 方向，希望把项目实践、
+      底层理解和持续学习过程沉淀成可长期复用的公开记录。
+    </p>
+  </section>
+
+  <section class="content-grid">
+    <div class="content-card panel">
+      <h2 class="section-title">当前方向</h2>
+      <div class="list-block">
+        <article class="timeline-item">
+          <h3>嵌入式 Linux 驱动</h3>
+          <p>关注设备驱动开发、内核接口理解、硬件与软件协同调试，以及更稳定的底层系统实现。</p>
+        </article>
+        <article class="timeline-item">
+          <h3>RTOS</h3>
+          <p>持续积累实时系统中的任务调度、中断、资源管理与工程实践经验。</p>
+        </article>
+        <article class="timeline-item">
+          <h3>MCU</h3>
+          <p>关注 MCU 平台上的外设驱动、通信接口、板级调试与面向资源受限环境的软件设计。</p>
+        </article>
+      </div>
+    </div>
+
+    <aside class="content-card panel">
+      <h2 class="section-title">联系与定位</h2>
+      <div class="list-block">
+        <article class="note-card">
+          <h3>求职方向</h3>
+          <p>嵌入式 Linux 驱动 / RTOS / MCU</p>
+        </article>
+        <article class="note-card">
+          <h3>邮箱</h3>
+          <p><a class="text-link" href="mailto:schen030@163.com">schen030@163.com</a></p>
+        </article>
+        <article class="note-card">
+          <h3>个人短句</h3>
+          <p>Keep Hungry</p>
+        </article>
+      </div>
+    </aside>
+  </section>
+</BaseLayout>

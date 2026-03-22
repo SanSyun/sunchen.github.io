@@ -1,0 +1,71 @@
+﻿---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatDate } from "../../lib/i18n";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("zh-projects", ({ data }) => !data.draft);
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+const { Content, headings } = await render(project);
+---
+
+<BaseLayout title={`${project.data.title} | Projects`} description={project.data.description} locale="zh" switchHref={`/en/projects/${project.id}`}>
+  <section class="article-layout">
+    {headings.length > 0 && (
+      <aside class="article-toc">
+        <h2 class="article-toc-title">大纲</h2>
+        <ul class="toc-list">
+          {headings
+            .filter((heading) => heading.depth === 2 || heading.depth === 3)
+            .map((heading) => (
+              <li class={`toc-item-depth-${heading.depth}`}>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+        </ul>
+      </aside>
+    )}
+
+    <section class="article-shell">
+      <div class="article-topline">
+        <span class="eyebrow">Project dossier</span>
+        <h1 class="article-title">{project.data.title}</h1>
+        <p class="article-summary">{project.data.description}</p>
+        <div class="split-list">
+          <div>
+            <span class="small-label">Role</span>
+            <p>{project.data.role}</p>
+          </div>
+          <div>
+            <span class="small-label">Duration</span>
+            <p>{project.data.duration}</p>
+          </div>
+          <div>
+            <span class="small-label">Published</span>
+            <p>{formatDate(project.data.date, "zh")}</p>
+          </div>
+          <div>
+            <span class="small-label">Outcome</span>
+            <p>{project.data.outcome}</p>
+          </div>
+        </div>
+        {project.data.stack.length > 0 && (
+          <ul class="stack-list" style="margin-top: 18px;">
+            {project.data.stack.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <article>
+        <Content />
+      </article>
+    </section>
+  </section>
+</BaseLayout>

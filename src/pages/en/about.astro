@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About | Your Name" description="Background, interests, and contact details." locale="en" switchHref="/about">
+  <section class="page-header">
+    <span class="eyebrow">About</span>
+    <h1 class="page-title">A concise page for context, credibility, and contact.</h1>
+    <p class="lede">
+      Keep this page direct: what you do, what kinds of problems interest you, and where people can
+      find your work. You can later add a dedicated <code>/resume</code> route for a more formal CV.
+    </p>
+  </section>
+
+  <section class="content-grid">
+    <div class="content-card panel">
+      <h2 class="section-title">Suggested structure</h2>
+      <div class="list-block">
+        <article class="timeline-item">
+          <h3>Short biography</h3>
+          <p>
+            Introduce your background in 3 to 5 sentences. Mention your current focus, strongest
+            technical strengths, and the kinds of teams or roles you are targeting.
+          </p>
+        </article>
+        <article class="timeline-item">
+          <h3>Core capabilities</h3>
+          <p>
+            List the areas that recur across your work, such as frontend systems, full-stack product
+            building, developer tooling, or machine learning applications.
+          </p>
+        </article>
+        <article class="timeline-item">
+          <h3>Contact and links</h3>
+          <p>
+            Add your email, GitHub, LinkedIn, and a downloadable resume. Make these links easy to
+            find without scrolling too far.
+          </p>
+        </article>
+      </div>
+    </div>
+
+    <aside class="content-card panel">
+      <h2 class="section-title">Hiring-focused checklist</h2>
+      <div class="list-block">
+        <article class="note-card">
+          <h3>Show outcomes</h3>
+          <p>Whenever possible, quantify results such as speed, adoption, accuracy, or saved time.</p>
+        </article>
+        <article class="note-card">
+          <h3>Keep links stable</h3>
+          <p>Use clean slugs so your resume can link to durable pages that still make sense next year.</p>
+        </article>
+        <article class="note-card">
+          <h3>Write for scanning</h3>
+          <p>Recruiters skim quickly, so use strong summaries and obvious section labels.</p>
+        </article>
+      </div>
+    </aside>
+  </section>
+</BaseLayout>
+
+
